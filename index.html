@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script data-require="vue.js@*" data-semver="0.10.5" src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.10.5/vue.min.js"></script>
+<script data-require="vue.js@*" data-semver="0.10.5" src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
+
+
+    <link rel="stylesheet" href="style.css" />
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 2em;
+    overflow: hidden;
+}
+
+    
+label, input {
+    display: block;
+}
+
+label {
+    margin-bottom: 20px;
+}
+.cor{
+    color: white;
+}
+</style>
+
+</head>
+<body>
+
+<!-- Para clicar e remover: v-on="click: removeUser(u)" 
+      <ul>
+        <li v-repeat="u : users">{{u.user}} </li>
+      </ul>
+
+
+      <p v-repeat="u : users">{{u.status}}</p>  
+        <p v-repeat="u : users">{{u.user}}</p>
+
+
+        Ser necessario preencer algo para adiconar:
+        <button v-on="click: addUser()" v-attr="disabled: newElement.user ===''">Add</button>
+
+
+     -->
+
+
+
+<div class="container">
+
+<header>
+   <h1 class="display-1">VERRUCKT</h1>
+</header>
+  
+
+
+<nav>
+  <ul>
+    <li><a href="#">Clientes</a></li>
+    <li><a href="tt.html">Fornecedores</a></li>
+    <li><a href="#">Contas a receber</a></li>
+    <li><a href="index.html">Contas a pagar</a></li>
+    <li><a href="#">Operações</a></li>
+    <li><a href="#">Bancos</a></li>
+    <li><a href="#">Centro de custo</a></li>
+    <li><a href="#">Condição</a></li>
+    <li><a href="#">Formas</a></li>
+    <li><a href="#">Lançamentos</a></li>
+    <li><a href="#">Usuarios</a></li>
+  </ul>
+</nav>
+
+  <article>
+
+    <div id="main">
+
+<h1><center>Contas a pagar</center></h1>
+<br />
+
+  <center><label for="example-date-input" class="col-2 col-form-label">Data</label>
+  <div class="col-4">
+    <input class="form-control" type="date" id="example-date-input" v-model="newElement.date">
+    </div></center>
+         <a>Numero</a><input type="email" class="form-control" id="exampleInputEmail1"  v-model="newElement.user">
+      <a>Favorecidos</a>
+<select class="custom-select" v-model="newElement.status">
+      <option>Funcionarios</option>
+      <option>Empregados</option>
+      </select>
+      <br />
+        <a>Operação</a>
+<select class="custom-select" v-model="newElement.oper">
+    <option value=""></option>
+    <option>VALE TRANSPORTE</option>
+    <option value="nome">NOME</option>
+    <option value="nome">NOME</option>
+</select>
+<br />
+        <a>Tipo de Documento</a>
+        <input type="email" class="form-control" id="exampleInputEmail1" v-model="newElement.tip">
+        <a>Numero e Documento</a><input type="email" class="form-control" id="exampleInputEmail1" v-model="newElement.numDoc">
+        <a>Valor do Documento</a><input type="email" class="form-control" id="exampleInputEmail1" v-model="newElement.valDoc">
+        <a>Condicao de Pagamento</a><input type="email" class="form-control" id="exampleInputEmail1" v-model="newElement.conPag">
+        <a>Forma de Pagamento</a><input type="email" class="form-control" id="exampleInputEmail1" v-model="newElement.forPag">
+
+
+<br />
+
+<center><button type="button" class="btn btn-secondary" v-on:click="addUser" >Salvar</button></center>
+<br />
+<br />
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Numero</th>
+      <th>Favorecidos</th>
+      <th>Operação</th>
+      <th>Tipo de Documento</th>
+      <th>Numero de Documento</th>
+      <th>Valor de Documento</th>
+      <th>Condição de Pagamento</th>
+      <th>Forma de Pagamento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="u in users">
+      <th scope="row">{{u.date}}</th>
+      <td>{{u.user}}</td>
+      <td>{{u.status}}</td>
+      <td>{{u.oper}}</td>
+      <td>{{u.tip}}</td>
+      <td>{{u.numDoc}}</td>
+      <td>{{u.valDoc}}</td>
+      <td>{{u.conPag}}</td>
+      <td>{{u.forPag}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+      </div>
+   
+      
+   
+
+
+      <script src="script.js"></script>
+      
+
+  </article>
+
+
+
+<footer>Copyright &copy; Verruckt </footer>
+
+</div>
+
+</body>
+</html>
